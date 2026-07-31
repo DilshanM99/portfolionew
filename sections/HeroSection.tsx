@@ -191,7 +191,7 @@ export default function HeroSection() {
                 className="hero-cta btn-glossy inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold transition-all duration-300 hover:scale-[1.04] active:scale-[0.97] group"
               >
                 <ExternalLink size={17} className="group-hover:rotate-6 transition-transform duration-300 text-foreground/75" />
-                View My Work
+                View Work
               </button>
               <a
                 href="/resume.pdf"

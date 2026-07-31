@@ -151,22 +151,22 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu overlay dropdown */}
       <div
         ref={mobileMenuRef}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
         style={{ display: "none" }}
-        className="fixed inset-0 z-40 pt-20 flex-col glass lg:hidden"
+        className="fixed top-[74px] left-6 right-6 z-40 flex flex-col rounded-3xl border border-black/10 bg-white shadow-2xl lg:hidden"
       >
-        <nav className="flex flex-col gap-2 p-6">
+        <nav className="flex flex-col gap-1 p-5">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="mobile-nav-item flex items-center gap-3 px-4 py-4 rounded-xl text-lg font-bold text-foreground/70 hover:text-foreground hover:bg-black/5 transition-all duration-200 border border-black/0 hover:border-black/5"
+              className="mobile-nav-item flex items-center gap-3 px-4 py-3.5 rounded-2xl text-base font-bold text-foreground/70 hover:text-foreground hover:bg-black/5 transition-all duration-200 border border-black/0 hover:border-black/5"
             >
               {link.label}
             </a>
@@ -174,7 +174,7 @@ export default function Header() {
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, "#contact")}
-            className="mobile-nav-item mt-4 btn-glossy flex items-center justify-center gap-2 px-4 py-4 rounded-xl text-base font-bold transition-all duration-300"
+            className="mobile-nav-item mt-3 btn-glossy flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl text-sm font-bold transition-all duration-300"
           >
             Let&apos;s Work Together
           </a>
