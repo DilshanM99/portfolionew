@@ -61,16 +61,34 @@ export default function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
   useGSAPReveal(sectionRef, { selector: ".reveal-item", stagger: 0.09 });
 
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "", honeypot: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
-    await new Promise((r) => setTimeout(r, 1800));
-    setStatus("success");
-    setForm({ name: "", email: "", message: "" });
-    setTimeout(() => setStatus("idle"), 4000);
+    setStatusMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to dispatch message.");
+      }
+
+      setStatus("success");
+      setForm({ name: "", email: "", message: "", honeypot: "" });
+    } catch (err: any) {
+      setStatus("error");
+      setStatusMessage(err.message || "Failed to send message.");
+      console.error(err);
+    }
   };
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -158,6 +176,19 @@ export default function Footer() {
                   />
                 </div>
 
+                {/* Honeypot field (hidden for anti-spam bots check) */}
+                <div className="absolute opacity-0 pointer-events-none w-0 h-0 overflow-hidden" aria-hidden="true">
+                  <label htmlFor="contact-honeypot">Leave this field empty</label>
+                  <input
+                    id="contact-honeypot"
+                    type="text"
+                    tabIndex={-1}
+                    value={form.honeypot}
+                    onChange={(e) => setForm((f) => ({ ...f, honeypot: e.target.value }))}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <button
                   type="submit"
                   disabled={status === "loading" || status === "success"}
@@ -168,6 +199,8 @@ export default function Footer() {
                     <><Loader2 size={17} className="animate-spin" aria-hidden="true" />Sending…</>
                   ) : status === "success" ? (
                     <><span aria-hidden="true">✓</span>Message Sent!</>
+                  ) : status === "error" ? (
+                    <><span className="text-red-500 mr-1" aria-hidden="true">✗</span>{statusMessage || "Error Sending"}</>
                   ) : (
                     <><Send size={17} aria-hidden="true" />Send Message</>
                   )}
