@@ -64,7 +64,7 @@ export default function TechStackSection() {
                     src={tech.icon}
                     alt={`${tech.name} logo`}
                     fill
-                    className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    className="object-contain transition-all duration-300"
                   />
                 </div>
               </div>

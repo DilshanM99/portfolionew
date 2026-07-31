@@ -311,12 +311,12 @@ export default function HeroSection() {
                   boxShadow: "0 16px 40px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9)",
                 }}
               >
-                <div className="absolute inset-5 rounded-[1.5rem] overflow-hidden border border-black/5 bg-black/5">
+                <div className="absolute inset-5 rounded-[1.5rem] overflow-hidden border border-black/5">
                   <Image
-                    src="/assets/ux_3d_mockup.png"
+                    src="/assets/ux_3d_mockup_new.png"
                     alt="Dilshan Madhuranga — UX Engineering 3D Mockup Visual"
                     fill
-                    className="object-cover filter grayscale contrast-[1.12] brightness-[1.03]"
+                    className="object-cover"
                     quality={95}
                   />
                 </div>
