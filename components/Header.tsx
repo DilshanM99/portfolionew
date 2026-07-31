@@ -40,19 +40,6 @@ export default function Header() {
         { opacity: 0, y: -20 },
         { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }
       );
-      // Stagger nav items
-      gsap.fromTo(
-        menu.querySelectorAll(".mobile-nav-item"),
-        { opacity: 0, y: -16 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.05,
-          duration: 0.4,
-          delay: 0.08,
-          ease: "power3.out",
-        }
-      );
     } else {
       gsap.to(menu, {
         opacity: 0,
