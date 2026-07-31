@@ -50,7 +50,7 @@ export async function POST(request: Request) {
         // Resend free tier onboarding email sender
         from: "Portfolio Contact <onboarding@resend.dev>",
         to: "dilshan1999madura@gmail.com",
-        subject: `💼 New Portfolio Message from ${name}`,
+        subject: `New Message from ${name}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaea; border-radius: 10px; background-color: #fafafa;">
             <h2 style="color: #111; border-bottom: 1px solid #eaeaea; padding-bottom: 10px; margin-top: 0;">New Contact Form Submission</h2>
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
             </div>
             
             <p style="font-size: 11px; color: #888; margin-top: 25px; text-align: center; border-top: 1px solid #eaeaea; padding-top: 15px;">
-              Sent from your Next.js Portfolio site.
+              Sent from my Portfolio site.
             </p>
           </div>
         `,
